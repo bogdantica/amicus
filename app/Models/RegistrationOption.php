@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RegistrationOption extends Model {
+class RegistrationOption extends BaseModel {
 
 	protected $table = 'registration_options';
 	public $timestamps = true;

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LuOptionType extends Model {
+class LuOptionType extends BaseModel {
 
 	protected $table = 'lookup_option_types';
 	public $timestamps = true;

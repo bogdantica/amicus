@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TimelineEvent extends Model {
+class TimelineEvent extends BaseModel {
 
 	protected $table = 'timeline_events';
 	public $timestamps = true;

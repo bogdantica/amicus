@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OptionValue extends Model {
+class OptionValue extends BaseModel {
 
 	protected $table = 'option_values';
 	public $timestamps = true;

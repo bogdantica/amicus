@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AttendOption extends Model {
+class AttendOption extends BaseModel {
 
 	protected $table = 'attend_options';
 	public $timestamps = true;

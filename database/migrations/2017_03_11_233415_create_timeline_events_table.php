@@ -11,10 +11,6 @@ class CreateTimelineEventsTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('name');
-			$table->string('title');
-			$table->string('url');
-			$table->string('icon')->nullable();
 			$table->text('body')->nullable();
 			$table->integer('entity_id')->unsigned()->nullable()->index();
 			$table->string('entity_name')->nullable();

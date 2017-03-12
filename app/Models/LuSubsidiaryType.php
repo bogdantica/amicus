@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LuSubsidiaryType extends Model {
+class LuSubsidiaryType extends BaseModel {
 
 	protected $table = 'lookup_subsidiaries_types';
 	public $timestamps = true;

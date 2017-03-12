@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Event;
 
 class EventTableSeeder extends Seeder
 {
@@ -11,7 +10,7 @@ class EventTableSeeder extends Seeder
         //DB::table('events')->delete();
 
         // aniversary
-        Event::create(array(
+        \App\Amicus\EventHelper::create(array(
             'name' => 'Aniversare Amicus',
             'start_date' => \Carbon\Carbon::now(),
             'end_date' => \Carbon\Carbon::now()->addDays(100),
@@ -22,7 +21,7 @@ class EventTableSeeder extends Seeder
         ));
 
         // project
-        Event::create(array(
+        \App\Amicus\EventHelper::create(array(
             'name' => 'Curatenie in Parcul Carol',
             'start_date' => \Carbon\Carbon::now(),
             'end_date' => \Carbon\Carbon::now()->addDays(100),

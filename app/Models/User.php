@@ -18,15 +18,30 @@ class User extends Authenticatable
     }
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('country', 'skills', 'sex');
+    protected $fillable = [
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+        'birthday',
+        'phone',
+        'country',
+        'county',
+        'city',
+        'skills',
+        'subsidiary_id',
+        'sex',
+        'active'
+    ];
 
     public function subsidiary()
     {
-        return $this->belongsTo('App\Models\Subsidiary', 'id', 'subsidiary_id');
+        return $this->belongsTo('App\Models\Subsidiary', 'subsidiary_id');
     }
 
     public function restore(){
         $this->sfRestore();
+
         Cache::tags(Config::get('entrust.role_user_table'))->flush();
     }
 }

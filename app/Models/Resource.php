@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Resource extends Model {
+class Resource extends BaseModel {
 
 	protected $table = 'resources';
 	public $timestamps = true;

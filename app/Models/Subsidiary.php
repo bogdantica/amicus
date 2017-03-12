@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subsidiary extends Model {
+class Subsidiary extends BaseModel {
 
 	protected $table = 'subsidiaries';
 	public $timestamps = true;
