@@ -11,6 +11,6 @@ class EventsController extends BaseController
     {
         $d = EventView::show($event);
 
-        return view('events.show',compact('d'));
+        return view('events.show.show',compact('d'));
     }
 }

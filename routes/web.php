@@ -2,10 +2,6 @@
 
 Auth::routes();
 
-Route::get('/test',function (){
-
-
-});
 
 Route::group([
     'middleware' => [
@@ -13,11 +9,11 @@ Route::group([
         'role:admin'
     ],
     'namespace' => 'Web'
-],function (){
+], function () {
 
     //users routes
 
-    Route::get('/profile',[
+    Route::get('/profile', [
         'as' => 'users.my-profile',
         'uses' => 'UsersController@profile',
         'middleware' => [
@@ -25,7 +21,7 @@ Route::group([
         ]
     ]);
 
-    Route::get('/profile/{user}',[
+    Route::get('/profile/{user}', [
         'as' => 'users.profile',
         'uses' => 'UsersController@profile',
         'middleware' => [
@@ -33,7 +29,7 @@ Route::group([
         ]
     ]);
 
-    Route::put('/profile/update/{user}',[
+    Route::put('/profile/update/{user}', [
         'as' => 'users.profile.update',
         'uses' => 'UsersController@update',
         'middleware' => [
@@ -43,16 +39,16 @@ Route::group([
 
 
     //event
-    Route::get('/events/{event}',[
-       'as' => 'event.show',
+    Route::get('/events/{event}', [
+        'as' => 'event.show',
         'uses' => 'EventsController@show',
         'middleware' => [
             'permission:view-event'
         ]
     ]);
 
-    Route::post('/events/create',[
-       'as' => 'event.create',
+    Route::post('/events/create', [
+        'as' => 'event.create',
 //        'uses' => 'EventsController@show',
         'middleware' => [
             'permission:edit-events'
@@ -60,8 +56,7 @@ Route::group([
     ]);
 
 
-
-    Route::get('/',[
+    Route::get('/', [
         'as' => 'home',
         'uses' => 'HomeController@home',
         'permission' => [
@@ -71,14 +66,14 @@ Route::group([
 
 
     //todo controlelr
-    Route::get('/subsidiaries/{subsidiary}',[
+    Route::get('/subsidiaries/{subsidiary}', [
         'as' => 'subsidiary.show',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
             'permission:view-subsidiary'
         ]
     ]);    //todo controlelr
-    Route::post('/subsidiaries/create',[
+    Route::post('/subsidiaries/create', [
         'as' => 'subsidiary.create',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
@@ -87,14 +82,14 @@ Route::group([
     ]);
 
     //todo controlelr
-    Route::get('/posts/{post}',[
+    Route::get('/posts/{post}', [
         'as' => 'posts.show',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
             'permission:view-posts'
         ]
     ]);    //todo controlelr
-    Route::post('/posts/create',[
+    Route::post('/posts/create', [
         'as' => 'posts.create',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
@@ -103,20 +98,60 @@ Route::group([
     ]);
 
     //todo controlelr
-    Route::get('/resources/{resource}',[
+    Route::get('/resources/{resource}', [
         'as' => 'resources.show',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
             'permission:view-resource'
         ]
-    ]);    //todo controlelr
-    Route::post('/resources/create',[
+    ]);
+    //todo controlelr
+    Route::post('/resources/create', [
         'as' => 'resources.create',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
             'permission:edit-resources'
         ]
     ]);
+
+    Route::post('/events/{event}/form/create', [
+        'as' => 'events.form.create',
+        'uses' => 'FormController@save',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::post('/events/form/{form}/option/create',[
+        'as' => 'events.form.option.create',
+        'uses' => 'FormController@createOption'
+
+    ]);
+
+    Route::put('/events/form/{form}/option/update/{option}', [
+        'as' => 'events.form.option.update',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::post('/events/form/option/{option}/value/create',[
+       'as' => 'events.form.option.value.create',
+        'uses' => 'FormController@createValue'
+    ]);
+    Route::put('/events/form/form/option/value/update{value}', [
+        'as' => 'events.form.option.value.update',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+
+});
+
+
+Route::get('/test', function () {
+
 
 });
 

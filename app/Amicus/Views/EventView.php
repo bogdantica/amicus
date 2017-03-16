@@ -23,7 +23,14 @@ class EventView
 
         $event->load('type');
         $event->load('subsidiary');
+        $event->load('forms');
 
+        $event->form = $event->forms->first();
+
+        $event->form->load('options');
+        $event->form->load('options.type');
+        $event->form->load('options.values');
+//
         $event->location = Helper::locationParser($event->country,$event->county,$event->city);
 
         return (object)[

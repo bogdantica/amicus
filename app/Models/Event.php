@@ -25,4 +25,9 @@ class Event extends BaseModel {
 		return $this->belongsTo('App\Models\Subsidiary', 'subsidiary_id');
 	}
 
+	public function forms()
+    {
+        return $this->hasMany('App\Models\RegistrationForm','event_id','id');
+    }
+
 }

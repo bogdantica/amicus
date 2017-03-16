@@ -14,31 +14,25 @@ class UserTableSeeder extends Seeder
 
         foreach ($routes as $route) {
             $middleware = collect($route->gatherMiddleware());
-
             $values = explode(':', collect($middleware->last())->last());
             if ($values[0] == 'permission') {
                 if (!in_array($values[1], $permissions)) {
                     $permissions[] = $values[1];
                 }
-
             }
-
         }
 
         $perms = [];
 
         foreach ($permissions as $permission) {
-            $perm = \App\Permission::create([
+            $perm = \App\Models\Permission::create([
                 'name' => $permission,
                 'display_name' => ucfirst(str_replace('-', ' ', $permission)),
             ]);
-
             $perms[] = $perm;
         }
 
-        //DB::table('users')->delete();
-
-        $adminRole = \App\Role::create([
+        $adminRole = \App\Models\Role::create([
             'name' => 'admin',
             'display_name' => 'Admin'
         ]);
@@ -55,5 +49,6 @@ class UserTableSeeder extends Seeder
         ));
 
         $admin->attachRole($adminRole);
+
     }
 }

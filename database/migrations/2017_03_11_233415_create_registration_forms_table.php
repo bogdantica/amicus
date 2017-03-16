@@ -15,7 +15,7 @@ class CreateRegistrationFormsTable extends Migration {
 			$table->boolean('active')->default(0);
 			$table->integer('event_id')->unsigned()->index();
 			$table->text('details')->nullable();
-			$table->float('cost_value')->nullable();
+			$table->boolean('cost')->nullable();
 		});
 	}
 

@@ -14,8 +14,9 @@ class CreateRegistrationOptionsTable extends Migration {
 			$table->string('name');
 			$table->string('label');
 			$table->string('details')->nullable();
-			$table->boolean('cost')->default(0);
-			$table->boolean('required')->default(0);
+			$table->boolean('cost')->default(false);
+			$table->boolean('slots')->default(false);
+			$table->boolean('required')->default(false);
 			$table->integer('option_type_id')->unsigned()->index();
 			$table->integer('form_id')->unsigned()->index();
 		});

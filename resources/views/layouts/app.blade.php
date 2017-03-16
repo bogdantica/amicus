@@ -15,6 +15,7 @@
     {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
     {!! Html::style('assets/dist/css/AdminLTE.min.css') !!}
     {!! Html::style('assets/dist/css/skins/_all-skins.min.css') !!}
+    {!! Html::style('assets/amicus/css/amicus.css') !!}
 
     {!! Html::script('assets/plugins/jQuery/jquery-2.2.3.min.js') !!}
 
@@ -56,6 +57,7 @@
 {!! Html::script('assets/plugins/slimScroll/jquery.slimscroll.min.js') !!}
 {!! Html::script('assets/plugins/fastclick/fastclick.js') !!}
 {!! Html::script('assets/dist/js/app.min.js') !!}
+{!! Html::script('assets/amicus/js/amicus.js') !!}
 
 </body>
 </html>

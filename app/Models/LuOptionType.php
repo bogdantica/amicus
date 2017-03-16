@@ -15,4 +15,10 @@ class LuOptionType extends BaseModel {
 	protected $dates = ['deleted_at'];
 	protected $fillable = array('option_type_id', 'name', 'display', 'details');
 
+	const TEXT = 10;
+
+	const ENUMERATION = 20;
+
+	const MULTIPLE = 30;
+
 }

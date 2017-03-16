@@ -22,13 +22,15 @@ class DatabaseSeeder extends Seeder {
         $this->call('LuOptionTypeTableSeeder');
         $this->command->info('LuOptionType table seeded!');
 
-
 		$this->call('SubsidiaryTableSeeder');
 		$this->command->info('Subsidiary table seeded!');
 
 		$this->call('EventTableSeeder');
 		$this->command->info('Event table seeded!');
 
+
+		$this->call('RegistrationFormSeeder');
+		$this->command->info('Registration Form Seeded');
 
 	}
 }

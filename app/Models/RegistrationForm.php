@@ -22,7 +22,7 @@ class RegistrationForm extends BaseModel {
 
 	public function options()
 	{
-		return $this->hasMany('App\Models\RegistrationOption');
+		return $this->hasMany('App\Models\RegistrationOption','form_id','id');
 	}
 
 }
