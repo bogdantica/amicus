@@ -13,6 +13,8 @@ class CreateRegistrationOptionsTable extends Migration {
 			$table->softDeletes();
 			$table->string('name');
 			$table->string('label');
+			$table->boolean('active')->default(false);
+			$table->integer('order')->default(0)->nullable();
 			$table->string('details')->nullable();
 			$table->boolean('cost')->default(false);
 			$table->boolean('slots')->default(false);

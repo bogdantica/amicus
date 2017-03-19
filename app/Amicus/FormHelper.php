@@ -29,6 +29,18 @@ class FormHelper
         return $form;
     }
 
+    public static function updateForm(RegistrationForm $form, $data)
+    {
+        $data = Helper::a2o($data);
+
+        $form->fill((array)$data);
+
+        if($form->save()){
+            return true;
+        }
+        return false;
+    }
+
     public static function createFormOption($data)
     {
         $data = Helper::a2o($data);
@@ -46,6 +58,18 @@ class FormHelper
         return $option;
     }
 
+    public static function updateFormOption(RegistrationOption $option,$data){
+        $data = Helper::a2o($data);
+
+        $option->fill((array)$data);
+
+        if($option->update()){
+            return true;
+        }
+
+        return false;
+    }
+
     public static function createOptionValue($data)
     {
         $data = Helper::a2o($data);
@@ -60,6 +84,18 @@ class FormHelper
         return $value;
     }
 
+    public static function updateOptionValue(OptionValue $value,$data){
+
+        $data = Helper::a2o($data);
+
+        $value->fill((array)$data);
+
+        if($value->save()){
+            return true;
+        }
+
+        return false;
+    }
 
 
 }

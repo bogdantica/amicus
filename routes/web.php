@@ -105,6 +105,7 @@ Route::group([
             'permission:view-resource'
         ]
     ]);
+
     //todo controlelr
     Route::post('/resources/create', [
         'as' => 'resources.create',
@@ -122,25 +123,32 @@ Route::group([
         ]
     ]);
 
-    Route::post('/events/form/{form}/option/create',[
+    Route::put('/events/form/{form}/update', [
+        'as' => 'events.form.update',
+        'uses' => 'FormController@update'
+    ]);
+
+    Route::post('/events/form/{form}/option/create', [
         'as' => 'events.form.option.create',
         'uses' => 'FormController@createOption'
 
     ]);
 
-    Route::put('/events/form/{form}/option/update/{option}', [
+    Route::put('/events/form/option/update/{option}', [
         'as' => 'events.form.option.update',
+        'uses' => 'FormController@updateOption',
         'middleware' => [
             'permission:edit-events'
         ]
     ]);
 
-    Route::post('/events/form/option/{option}/value/create',[
-       'as' => 'events.form.option.value.create',
+    Route::post('/events/form/option/{option}/value/create', [
+        'as' => 'events.form.option.value.create',
         'uses' => 'FormController@createValue'
     ]);
-    Route::put('/events/form/form/option/value/update{value}', [
+    Route::put('/events/form/option/value/update/{value}', [
         'as' => 'events.form.option.value.update',
+        'uses' => 'FormController@updateValue',
         'middleware' => [
             'permission:edit-events'
         ]

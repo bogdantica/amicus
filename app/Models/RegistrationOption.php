@@ -14,7 +14,7 @@ class RegistrationOption extends BaseModel
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('name', 'label', 'details', 'cost', 'required', 'option_type_id', 'form_id');
+    protected $fillable = array('name', 'label', 'details', 'cost', 'required', 'slots', 'option_type_id', 'form_id');
 
     public function type()
     {

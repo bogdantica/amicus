@@ -13,6 +13,8 @@ class CreateOptionValuesTable extends Migration {
 			$table->softDeletes();
 			$table->integer('option_id')->unsigned();
 			$table->string('value');
+			$table->integer('order')->nullable();
+			$table->text('details')->nullable();
 			$table->float('cost_value')->nullable();
 			$table->integer('slots')->unsigned()->nullable();
 		});

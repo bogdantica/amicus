@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OptionValue extends BaseModel {
+class OptionValue extends BaseModel
+{
 
-	protected $table = 'option_values';
-	public $timestamps = true;
+    protected $table = 'option_values';
+    public $timestamps = true;
 
-	use SoftDeletes;
+    use SoftDeletes;
 
-	protected $dates = ['deleted_at'];
-	protected $fillable = array('option_id', 'value', 'cost_value');
+    protected $dates = ['deleted_at'];
+    protected $fillable = array('option_id', 'value', 'cost_value', 'slots');
 
-	public function option()
-	{
-		return $this->belongsTo('App\Models\RegistrationOption');
-	}
+    public function option()
+    {
+        return $this->belongsTo('App\Models\RegistrationOption');
+    }
 
 }
