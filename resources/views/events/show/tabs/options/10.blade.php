@@ -12,19 +12,15 @@
                         {!! Form::text('label',$option->label,['class' => 'form-control']) !!}
                     </div>
                 </div>
-            </div>
 
-            <div class="box-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-10">
                         {!! Form::textarea('details',$option->details,['class' => 'form-control resize-none editor','rows' => 3]) !!}
                     </div>
                 </div>
-            </div>
 
-            <div class="box-body">
-                <div class="row">
+                <div class="row form-group">
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
                     </div>
@@ -36,28 +32,18 @@
                         <label class=" control-label">Required</label>
 
                     </div>
-                    {{--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">--}}
-                        {{--<label>--}}
-                            {{--{!! Form::checkbox('cost',true,$option->cost,['class' => '']) !!}--}}
-                        {{--</label>--}}
-                        {{--<label class="control-label">Cost</label>--}}
-
-                    {{--</div>--}}
-                    {{--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">--}}
-                        {{--<label class="control-label">Slots</label>--}}
-                        {{--<label>--}}
-                            {{--{!! Form::checkbox('slots',true,$option->slots,['class' => '']) !!}--}}
-                        {{--</label>--}}
-                    {{--</div>--}}
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Order</label>
+                    <div class="col-sm-10">
+                        {!! Form::selectRange('order',-10,10,$option->order,['class' => 'form-control']) !!}
+                    </div>
                 </div>
 
-
-                <div class="box-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Type</label>
-                        <div class="col-sm-10">
-                            {!! Form::select('option_type_id',\App\Models\LuOptionType::all()->pluck('display','option_type_id'),$option->option_type_id,['class' => 'form-control']) !!}
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Type</label>
+                    <div class="col-sm-10">
+                        {!! Form::select('option_type_id',\App\Models\LuOptionType::all()->pluck('display','option_type_id'),$option->option_type_id,['class' => 'form-control']) !!}
                     </div>
                 </div>
 
@@ -75,13 +61,9 @@
                         <button class="btn btn-primary" name="update" value="1">Update</button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-        {!! Form::close() !!}
-
     </div>
-
+    {!! Form::close() !!}
 </div>
+

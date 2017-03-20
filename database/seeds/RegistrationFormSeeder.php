@@ -33,6 +33,7 @@ class RegistrationFormSeeder extends Seeder
 
         $hostHotel = \App\Models\OptionValue::create([
             'option_id' => $hostOption->id,
+            'details' => 'Hotel details',
             'value' => 'Hotel Host ***',
             'cost_value' => 120.10,
             'slots' => 15,
@@ -40,6 +41,7 @@ class RegistrationFormSeeder extends Seeder
 
         $hostMotel = \App\Models\OptionValue::create([
             'option_id' => $hostOption->id,
+            'details' => 'Hotel details',
             'value' => 'Motel Host *',
             'cost_value' => 60,
             'slots' => 30,
@@ -47,6 +49,7 @@ class RegistrationFormSeeder extends Seeder
 
         $hostApartament = \App\Models\OptionValue::create([
             'option_id' => $hostOption->id,
+            'details' => 'Hotel details',
             'value' => 'Apartament Shared',
             'cost_value' => 30,
             'slots' => 50,
@@ -67,6 +70,7 @@ class RegistrationFormSeeder extends Seeder
 
         $mealMonday = \App\Models\OptionValue::create([
             'option_id' => $mealOption->id,
+            'details' => 'Meal Details...',
             'value' => 'Mean Monday',
             'cost_value' => 20,
             'slots' => 15,
@@ -74,6 +78,7 @@ class RegistrationFormSeeder extends Seeder
 
         $mealTuesday = \App\Models\OptionValue::create([
             'option_id' => $mealOption->id,
+            'details' => 'Meal Details...',
             'value' => 'Meal Tuesday',
             'cost_value' => 20,
             'slots' => 30,
@@ -81,6 +86,7 @@ class RegistrationFormSeeder extends Seeder
 
         $mealWednesday = \App\Models\OptionValue::create([
             'option_id' => $mealOption->id,
+            'details' => 'Meal Details...',
             'value' => 'Meal Wednesday',
             'cost_value' => 30,
             'slots' => 50,

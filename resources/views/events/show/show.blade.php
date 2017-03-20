@@ -7,8 +7,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right" role="tablist">
                     <li><a href="#tab3" role="tab" data-toggle="tab">Form</a></li>
-                    <li><a href="#tab2" role="tab" data-toggle="tab">Attend</a></li>
-                    <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Event</a></li>
+                    <li class="active"><a href="#tab2" role="tab" data-toggle="tab">Attend</a></li>
+                    <li><a href="#tab1" role="tab" data-toggle="tab">Event</a></li>
 
                 </ul>
                 <!-- TAB CONTENT -->
@@ -16,12 +16,12 @@
                     <div class=" tab-pane fade" id="tab1">
                         @include('events.show.tabs.event')
                     </div>
-                    <div class="tab-pane fade" id="tab2">
+                    <div class="active tab-pane fade in" id="tab2">
                         @include('events.show.tabs.attend')
                     </div>
-                    <div class="active tab-pane fade in" id="tab3">
+                    <div class=" tab-pane fade" id="tab3">
 
-                        @if($d->event->forms->count())
+                        @if($d->event->form)
                             @include('events.show.tabs.form')
                         @else
                             @include('events.show.tabs.newForm')
@@ -33,6 +33,16 @@
             <!-- TAB NAVIGATION -->
         </div>
     </div>
+
+@stop
+
+@section('scripts')
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.editor').wysihtml5();
+        });
+    </script>
 
 @stop
 

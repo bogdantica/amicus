@@ -14,7 +14,7 @@ class OptionValue extends BaseModel
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('option_id', 'value', 'cost_value', 'slots');
+    protected $fillable = array('option_id', 'value', 'cost_value', 'slots','details','active');
 
     public function option()
     {

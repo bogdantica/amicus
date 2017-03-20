@@ -46,12 +46,13 @@ class FormHelper
         $data = Helper::a2o($data);
 
         $option = RegistrationOption::create([
-            'name' => $data->name,
+            'name' => $data->name ?? str_slug($data->label),
             'label' => $data->label,
             'details' => $data->details ?? null,
-            'cost' => is_null($data->cost) ? false : $data->cost,
-            'slots' => is_null($data->slots) ? false : $data->slots,
+            'cost' => $data->cost ?? false,
+            'slots' => $data->slots ?? false,
             'form_id' => $data->form_id,
+            'order' => $data->order ?? 0,
             'option_type_id' => $data->option_type_id
         ]);
 
@@ -77,8 +78,9 @@ class FormHelper
         $value = OptionValue::create([
             'option_id' => $data->option_id,
             'value' => $data->value,
-            'cost_value' => is_null($data->cost_value) ? null : $data->cost_value,
-            'slots' => is_null($data->slots) ? null : $data->slots,
+            'details' => $data->details ?? null,
+            'cost_value' => $data->cost ?? null,
+            'slots' => $data->slots ?? null,
         ]);
 
         return $value;

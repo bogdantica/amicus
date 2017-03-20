@@ -39,8 +39,8 @@
 
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
+    @include('elements.notifications.notifications')
 <div class="wrapper">
-
     @include('elements.header.header')
     <div class="content-wrapper">
         <div class="container">

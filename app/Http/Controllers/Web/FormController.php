@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Amicus\FormHelper;
 use App\Amicus\Views\FormView;
+use App\Http\Requests\FormRequest;
+use App\Http\Requests\OptionRequest;
+use App\Http\Requests\OptionValueRequest;
+use App\Http\Requests\RegistrationFormRequest;
 use App\Models\Event;
 use App\Models\OptionValue;
 use App\Models\RegistrationForm;
@@ -13,7 +17,7 @@ use Illuminate\Http\Request;
 
 class FormController extends BaseController
 {
-    public function save(Request $request, Event $event)
+    public function save(RegistrationFormRequest $request, Event $event)
     {
         //todo change this
         $request->merge(['event_id' => $event->id]);
@@ -23,7 +27,7 @@ class FormController extends BaseController
         return redirect()->back();
     }
 
-    public function update(Request $request, RegistrationForm $form)
+    public function update(RegistrationFormRequest $request, RegistrationForm $form)
     {
 
         $data = FormHelper::updateForm($form,$request->all());
@@ -32,9 +36,8 @@ class FormController extends BaseController
     }
 
 
-    public function createOption(RegistrationForm $form, Request $request)
+    public function createOption(RegistrationForm $form, OptionRequest $request)
     {
-
         //todo change this
         $request->merge(['form_id' => $form->id]);
         $data = FormHelper::createFormOption($request->all());
@@ -50,7 +53,7 @@ class FormController extends BaseController
         return redirect()->back();
     }
 
-    public function createValue(RegistrationOption $option, Request $request)
+    public function createValue(RegistrationOption $option, OptionValueRequest $request)
     {
 
         $request->merge(['option_id' => $option->id]);
@@ -60,7 +63,7 @@ class FormController extends BaseController
         return redirect()->back();
     }
 
-    public function updateValue( OptionValue $value, Request $request)
+    public function updateValue( OptionValue $value, OptionValueRequest $request)
     {
         $data = FormHelper::updateOptionValue($value,$request->all());
 

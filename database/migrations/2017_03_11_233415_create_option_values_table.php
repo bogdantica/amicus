@@ -17,6 +17,7 @@ class CreateOptionValuesTable extends Migration {
 			$table->text('details')->nullable();
 			$table->float('cost_value')->nullable();
 			$table->integer('slots')->unsigned()->nullable();
+			$table->boolean('active')->default(0);
 		});
 	}
 

@@ -20,14 +20,16 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Details</label>
             <div class="col-sm-10">
-                {!! Form::textarea('details',null,['class' => 'form-control']) !!}
+                {!! Form::textarea('details',null,['class' => 'form-control editor']) !!}
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Active</label>
             <div class="col-sm-10">
-                {!! Form::checkbox('active',false,['class' => 'form-control']) !!}
+                <label>
+                    {!! Form::checkbox('active',true,null,['class' => '']) !!}
+                </label>
             </div>
         </div>
 

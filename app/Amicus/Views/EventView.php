@@ -20,16 +20,15 @@ class EventView
         if($event->active == false){
             abort(404);
         }
-
         $event->load('type');
         $event->load('subsidiary');
-        $event->load('forms');
+        $event->load('form');
 
-        $event->form = $event->forms->first();
-
-        $event->form->load('options');
-        $event->form->load('options.type');
-        $event->form->load('options.values');
+        if($event->form){
+            $event->form->load('options');
+            $event->form->load('options.type');
+            $event->form->load('options.values');
+        }
 //
         $event->location = Helper::locationParser($event->country,$event->county,$event->city);
 

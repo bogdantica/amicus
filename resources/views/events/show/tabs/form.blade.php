@@ -1,11 +1,18 @@
 <div class="box" style="border-top:0">
 
     <div class="box-header with-border">
-        <h3>{{ $d->event->form->name }}</h3>
+        <h3 class="text-center">{{ $d->event->form->name }}</h3>
     </div>
 
     <div class="box-body">
         {!! Form::open(['url' => route('events.form.update',$d->event->form->id), 'method' =>'PUT', 'class' => 'form-horizontal']) !!}
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+                {!! Form::text('name',$d->event->form->name,['class' => 'form-control']) !!}
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Details</label>
@@ -56,7 +63,7 @@
                 </div>
 
             @endforeach
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('events.show.tabs.options.new')
             </div>
         </div>
@@ -74,13 +81,3 @@
     </div>
 
 </div>
-
-@section('scripts')
-
-    <script>
-        jQuery(document).ready(function(){
-            jQuery('.editor').wysihtml5();
-        });
-    </script>
-
-@stop

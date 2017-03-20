@@ -146,12 +146,18 @@ Route::group([
         'as' => 'events.form.option.value.create',
         'uses' => 'FormController@createValue'
     ]);
+
     Route::put('/events/form/option/value/update/{value}', [
         'as' => 'events.form.option.value.update',
         'uses' => 'FormController@updateValue',
         'middleware' => [
             'permission:edit-events'
         ]
+    ]);
+
+    Route::post('/events/{event}/form/{form}/attend',[
+        'as' => 'events.form.attend',
+        'uses' => 'AttendController@attend'
     ]);
 
 
