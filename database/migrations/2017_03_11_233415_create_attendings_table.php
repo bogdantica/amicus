@@ -15,6 +15,7 @@ class CreateAttendingsTable extends Migration {
 			$table->integer('form_id')->unsigned()->index();
 			$table->integer('event_id')->unsigned()->nullable()->index();
 			$table->float('total_cost')->nullable();
+			$table->boolean('confirmed')->boolean()->default(0);
 		});
 	}
 

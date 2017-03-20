@@ -13,6 +13,7 @@ class CreateAttendOptionsTable extends Migration {
 			$table->softDeletes();
 			$table->integer('attend_id')->unsigned()->index();
 			$table->integer('option_id')->unsigned()->index();
+			$table->integer('value_id')->unsigned()->index()->nullable();
 			$table->float('cost_value')->nullable();
 			$table->string('value');
 		});

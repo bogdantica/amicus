@@ -39,8 +39,8 @@ class AttendHelper
         $totalCost = 0;
         $options = RegistrationOption::whereIn('id', array_keys($data->options))->get();
 
-
         foreach ($options as $option) {
+
             switch ($option->option_type_id) {
                 case LuOptionType::TEXT:
                     $value = $data->options[$option->id];
@@ -65,7 +65,7 @@ class AttendHelper
                             static::decreaseSlots($value);
                         }
 
-                        $attends[] = static::attendOption($attend, $option, $value->value);
+                        $attends[] = static::attendOption($attend, $option,$value);
                     }
                     break;
 
@@ -74,6 +74,7 @@ class AttendHelper
                     $cost = null;
                     $valueId = $data->options[$option->id];
                     $value = OptionValue::find($valueId);
+
                     if ($option->cost) {
                         $cost = $value->cost_value;
                         $totalCost += $cost;
@@ -83,15 +84,25 @@ class AttendHelper
                         static::decreaseSlots($value);
                     }
 
-                    $attends[] = static::attendOption($attend, $option, $value->value);
+                    $attends[] = static::attendOption($attend, $option, $value);
 
                     break;
             }
         }
 
+        if ($totalCost) {
+
+        }
 
         //todo update total cost !!
 
+    }
+
+    public static function updateCost(Attending $attending, $cost)
+    {
+        $attending->total_cost = $cost;
+
+        return $attending->save();
     }
 
     public static function attendUser(Event $event, RegistrationForm $form, User $user, $totalCost = null)
@@ -100,23 +111,27 @@ class AttendHelper
             'user_id' => $user->id,
             'event_id' => $event->id,
             'form_id' => $form->id,
-            'totalCost' => $totalCost
+            'totalCost' => $totalCost,
+            'confirmed' => false
         ]);
 
         return $attend;
     }
 
-    public static function attendOption(Attending $attend, RegistrationOption $option, $value)
+    public static function attendOption(Attending $attend, RegistrationOption $option,$value)
     {
         $attendOption = AttendOption::create([
             'attend_id' => $attend->id,
             'option_id' => $option->id,
-            'value' => $value
+            'value' => $value->value ?? $value,
+            'value_id' => $value->id ?? null,
+            'cost_value' => $option->cost ? $value->cost_value ?? 0 : null
         ]);
+
+
 
         return $attendOption;
     }
-
 
     public static function decreaseSlots(OptionValue $value)
     {
@@ -125,7 +140,7 @@ class AttendHelper
 
         $value->slots = $slots;
 
-        if($slots == 0){
+        if ($slots == 0) {
             $value->active = false;
         }
 

@@ -83,6 +83,11 @@ class CreateForeignKeys extends Migration {
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
+		Schema::table('attend_options', function(Blueprint $table) {
+			$table->foreign('value_id')->references('id')->on('option_values')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
 	}
 
 	public function down()
@@ -131,6 +136,9 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('attend_options', function(Blueprint $table) {
 			$table->dropForeign('attend_options_option_id_foreign');
+		});
+		Schema::table('attend_options', function(Blueprint $table) {
+			$table->dropForeign('attend_options_value_id_foreign');
 		});
 	}
 }

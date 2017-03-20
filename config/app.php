@@ -179,6 +179,7 @@ return [
 
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        \App\Providers\AmicusServiceProvider::class
 
 
     ],

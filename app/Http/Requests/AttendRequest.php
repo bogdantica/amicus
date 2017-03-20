@@ -25,6 +25,9 @@ class AttendRequest extends FormRequest
     public function rules()
     {
         return [
+
+            'options.*' => 'attendSlots'
+
             //
         ];
     }

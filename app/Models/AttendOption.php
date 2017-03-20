@@ -13,7 +13,7 @@ class AttendOption extends BaseModel {
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $fillable = array('attend_id', 'option_id', 'value');
+	protected $fillable = array('attend_id', 'option_id', 'value','value_id','cost_value');
 
 	public function option()
 	{
