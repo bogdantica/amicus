@@ -16,7 +16,6 @@ class AttendRequest extends FormRequest
         //todo check if user already attended to this event !
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,10 +24,17 @@ class AttendRequest extends FormRequest
     public function rules()
     {
         return [
+            'textOptions.*' => 'string|max:10000',
+            'multipleValues.*' => 'attendValues:active,available|sometimes',
+            'enumerationValues.*.*' => 'attendValues:active,available|sometimes',
 
-            'options.*' => 'attendSlots'
+        ];
+    }
 
-            //
+    public function messages()
+    {
+        return [
+            'textOptions.*.string' => 'Campul trebuie sa fie text !'
         ];
     }
 }

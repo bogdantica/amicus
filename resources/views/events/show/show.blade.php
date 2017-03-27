@@ -39,9 +39,12 @@
 @section('scripts')
 
     <script>
-        jQuery(document).ready(function(){
-            jQuery('.editor').wysihtml5();
+        $(document).ready(function(){
+            $('.editor').wysihtml5();
         });
+
+        $('#attendForm').ajaxForm();
+
     </script>
 
 @stop

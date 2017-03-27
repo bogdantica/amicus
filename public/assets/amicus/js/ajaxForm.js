@@ -2,14 +2,12 @@
  * Created by tkagnus on 19/03/2017.
  */
 // jQuery Plugin Boilerplate
-// remember to change every instance of "pluginName" to the name of your plugin!
+// remember to change every instance of "ajaxForm" to the name of your plugin!
 (function($) {
 //    http://bootstrap-notify.remabledesigns.com/
     // here we go!
-    $.pluginName = function(element, options) {
+    $.ajaxForm = function(element, options) {
         var defaults = {
-            foo: 'bar',
-            onFoo: function() {}
         };
         var plugin = this;
         plugin.settings = {};
@@ -18,45 +16,46 @@
             element = element;    // reference to the actual DOM element
         plugin.init = function() {
             plugin.settings = $.extend({}, defaults, options);
-            // to do
-        };
 
-        // public methods
-        // these methods can be called like:
-        // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
-        // element.data('pluginName').publicMethod(arg1, arg2, ... argn) from outside
-        // the plugin, where "element" is the element the plugin is attached to;
+            plugin.form = $element;
 
-        // a public method. for demonstration purposes only - remove it!
-        plugin.foo_public_method = function() {
-
-            // code goes here
+            plugin.form.submit(function(e){
+                submitHandler();
+                return false;
+            });
 
         };
-        var foo_private_method = function() {
 
-            // code goes here
+        var submitHandler = function(){
+            $.ajax({
+                url: plugin.form.attr('action'),
+                method: plugin.form.attr('method'),
+                data: plugin.form.serialize(),
+                dataType: 'json',
+                success: function(r,status,x){
+                    // location.reload();
+                    // console.log(r);
+                },
+                error: function(r,status,z){
+                    //todo
+                    formErrors($element,r.responseJSON);
+                }
+            });
+        };
 
-        }
-
-        // fire up the plugin!
-        // call the "constructor" method
         plugin.init();
 
     }
 
     // add the plugin to the jQuery.fn object
-    $.fn.pluginName = function(options) {
+    $.fn.ajaxForm = function(options) {
         return this.each(function() {
             // if plugin has not already been attached to the element
-            if (undefined == $(this).data('pluginName')) {
-                var plugin = new $.pluginName(this, options);
-                $(this).data('pluginName', plugin);
-
+            if (undefined == $(this).data('ajaxForm')) {
+                var plugin = new $.ajaxForm(this, options);
+                $(this).data('ajaxForm', plugin);
             }
-
         });
-
     }
 
 })(jQuery);

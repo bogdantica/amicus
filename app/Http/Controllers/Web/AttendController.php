@@ -22,10 +22,7 @@ class AttendController extends BaseController
 
     public function attend(Event $event, RegistrationForm $form, AttendRequest $request)
     {
-        dd($request->all());
-
-
-
+//        dd($request->all());
         //todo request.
         //todo custom validation !!
 

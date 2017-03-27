@@ -20,6 +20,7 @@
     {!! Html::style('assets/amicus/css/amicus.css') !!}
 
     {!! Html::script('assets/plugins/jQuery/jquery-2.2.3.min.js') !!}
+    {!! Html::script('assets/amicus/js/ajaxForm.js') !!}
 
     @yield('styles')
 
