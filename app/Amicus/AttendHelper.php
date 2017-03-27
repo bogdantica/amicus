@@ -38,9 +38,9 @@ class AttendHelper
             $user = Auth::user();
         }
 
-//        if(static::checkAttended($data,$form,$user)){
-//            throw new \Exception("User already attended");
-//        }
+        if(static::checkAttended($data,$form,$user)){
+            throw new \Exception("User already attended",1);
+        }
 
 
         //todo check if user already attended,

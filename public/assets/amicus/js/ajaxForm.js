@@ -33,7 +33,7 @@
                 data: plugin.form.serialize(),
                 dataType: 'json',
                 success: function(r,status,x){
-                    // location.reload();
+                    location.reload();
                     // console.log(r);
                 },
                 error: function(r,status,z){

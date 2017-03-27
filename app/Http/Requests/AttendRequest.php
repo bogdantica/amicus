@@ -24,7 +24,7 @@ class AttendRequest extends FormRequest
     public function rules()
     {
         return [
-            'textOptions.*' => 'string|max:10000',
+            'textOptions.*' => 'string|max:10000|nullable',
             'multipleValues.*' => 'attendValues:active,available|sometimes',
             'enumerationValues.*.*' => 'attendValues:active,available|sometimes',
 

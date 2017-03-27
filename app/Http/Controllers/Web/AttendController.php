@@ -7,6 +7,7 @@ use App\Amicus\Views\AttendView;
 use App\Http\Requests\AttendRequest;
 use App\Models\Event;
 use App\Models\RegistrationForm;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AttendController extends BaseController
@@ -22,11 +23,15 @@ class AttendController extends BaseController
 
     public function attend(Event $event, RegistrationForm $form, AttendRequest $request)
     {
-//        dd($request->all());
-        //todo request.
-        //todo custom validation !!
+        try{
+            $d = AttendHelper::attend($event, $form, $request->all());
+        }catch (\Exception $e){
+        }
 
-        $d = AttendHelper::attend($event, $form, $request->all());
+        if($request->ajax()){
+            return new JsonResponse("Success");
+        }
+
         return redirect()->back();
     }
 
