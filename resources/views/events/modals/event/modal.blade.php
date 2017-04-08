@@ -1,5 +1,5 @@
 <div class="modal fade" id="event-{{ $event->id }}">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             @if($event->id)
                 {!! Form::open(['url' => route('event.update',$event->id),'method' => 'PUT']) !!}

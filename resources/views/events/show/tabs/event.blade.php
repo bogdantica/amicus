@@ -37,12 +37,14 @@
                     Editeaza Eveniment
                 </button>
             </a>
+            @if($d->event->form)
             <a href="#" class="">
                 <button class="btn btn-primary edit-registration-form" data-id="{{ $d->event->form->id }}">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     Editeaza Formular Inscriere
                 </button>
             </a>
+            @endif
             <a href="#" class="">
                 <button class="btn btn-success attend">
                     <i class="fa fa-sign-in" aria-hidden="true"></i>
