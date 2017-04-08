@@ -21,6 +21,7 @@
 
     {!! Html::script('assets/plugins/jQuery/jquery-2.2.3.min.js') !!}
     {!! Html::script('assets/amicus/js/ajaxForm.js') !!}
+    {!! Html::script('assets/amicus/js/dynamicModal.js') !!}
 
     @yield('styles')
 
@@ -32,7 +33,7 @@
     <![endif]-->
 
     <script>
-        window.Laravel = {!! json_encode([
+        window.amicus = {!! json_encode([
             'csrfToken' => csrf_token(),
             'baseUrl' => url('/'),
         ]) !!};

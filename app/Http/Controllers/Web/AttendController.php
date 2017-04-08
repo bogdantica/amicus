@@ -8,11 +8,27 @@ use App\Http\Requests\AttendRequest;
 use App\Models\Event;
 use App\Models\RegistrationForm;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class AttendController extends BaseController
 {
     //
+
+    public function modal(RegistrationForm $form)
+    {
+        $form->load([
+            'options' => function ($query) {
+                $query->orderBy('order');
+            },
+            'options.values' => function ($query) {
+                $query->orderBy('order');
+            }
+        ]);
+
+
+        return [
+            'modal' => view('events.modals.attend.modal', compact('form'))->__toString()
+        ];
+    }
 
     public function show(Event $event)
     {
@@ -21,19 +37,23 @@ class AttendController extends BaseController
         return view('events.show.tabs.attend', compact($d));
     }
 
-    public function attend(Event $event, RegistrationForm $form, AttendRequest $request)
+    public function attend(RegistrationForm $form, AttendRequest $request)
     {
-        try{
-            $d = AttendHelper::attend($event, $form, $request->all());
-        }catch (\Exception $e){
+        try {
+            $d = AttendHelper::attend($form, $request->all());
+        } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return new JsonResponse(['error' => [$e->getMessage()]],422);
+            }
         }
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return new JsonResponse("Success");
         }
 
         return redirect()->back();
     }
+
 
     public function attendingList(RegistrationForm $form)
     {

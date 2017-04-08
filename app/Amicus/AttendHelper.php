@@ -30,9 +30,14 @@ class AttendHelper
             ->count();
     }
 
-    public static function attend(Event $event, RegistrationForm $form, $data, User $user = null)
+    public static function attend(RegistrationForm $form, $data, User $user = null)
     {
         $data = Helper::a2o($data);
+
+        $form->load('event');
+
+        $event = $form->event;
+
 
         if (!isset($user->id)) {
             $user = Auth::user();

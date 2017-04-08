@@ -13,13 +13,35 @@ use App\Models\Event;
 use App\Models\OptionValue;
 use App\Models\RegistrationForm;
 use App\Models\RegistrationOption;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FormController extends BaseController
 {
+
+    public function modalForm(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'nullable|exists:registration_forms,id',
+            'id2' => 'nullable|exists:events,id'
+        ]);
+
+        if($request->id){
+            $form = RegistrationForm::find($request->id);
+            $event = $form->event;
+        }else{
+            $form = new RegistrationForm();
+            $event = Event::find($request->id2);
+        }
+
+        return [
+            'modal' => view('events.modals.registration_form.form.modal',compact('form','event'))->__toString()
+        ];
+
+    }
+
     public function save(RegistrationFormRequest $request, Event $event)
     {
-        //todo change this
         $request->merge(['event_id' => $event->id]);
 
         FormHelper::createForm($request);
@@ -42,15 +64,47 @@ class FormController extends BaseController
         $request->merge(['form_id' => $form->id]);
         $data = FormHelper::createFormOption($request->all());
 
+        if($request->ajax()){
+            return new JsonResponse([
+                'success' => 'Optiune Creata'
+            ]);
+        }
+
         return redirect()->back();
     }
 
-    public function updateOption(RegistrationOption $option, Request $request)
-    {
 
+    public function updateOption(RegistrationOption $option, OptionRequest $request)
+    {
         $data = FormHelper::updateFormOption($option,$request->all());
 
+        if($request->ajax()){
+            return new JsonResponse([
+                'success' => 'Optiune Modificata'
+            ]);
+        }
+
         return redirect()->back();
+    }
+
+    public function modalOption(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'nullable|exists:registration_options,id',
+            'id2' => 'nullable|exists:registration_forms,id'
+        ]);
+
+        if($request->id){
+            $option = RegistrationOption::find($request->id);
+            $form = $option->form;
+        }else{
+            $option = new RegistrationOption();
+            $form = RegistrationForm::find($request->id2);
+        }
+
+        return [
+            'modal' => view('events.modals.registration_form.option.option',compact('option','form'))->__toString()
+        ];
     }
 
     public function createValue(RegistrationOption $option, OptionValueRequest $request)
@@ -60,6 +114,12 @@ class FormController extends BaseController
 
         $data = FormHelper::createOptionValue($request->all());
 
+        if($request->ajax()){
+            return new JsonResponse([
+                'success' => 'Valoare Creata'
+            ]);
+        }
+
         return redirect()->back();
     }
 
@@ -67,7 +127,32 @@ class FormController extends BaseController
     {
         $data = FormHelper::updateOptionValue($value,$request->all());
 
+        if($request->ajax()){
+            return new JsonResponse([
+                'success' => 'Valoare Modificata'
+            ]);
+        }
         return redirect()->back();
+    }
+
+    public function modalOptionValue(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'nullable|exists:option_values,id',
+            'id2' => 'nullable|exists:registration_options,id'
+        ]);
+
+        if($request->id){
+            $value = OptionValue::with('option')
+            ->find($request->id);
+        }else{
+            $value = new OptionValue();
+            //todo option value !! to continue
+        }
+
+        return [
+            'modal' => view('events.modals.registration_form.optionValue.value',compact('value'))->__toString()
+        ];
     }
 
 

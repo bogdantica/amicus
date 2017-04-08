@@ -27,14 +27,17 @@
         };
 
         var submitHandler = function(){
+
+            console.log(plugin.form.attr('action'),plugin.form.serialize());
+
             $.ajax({
                 url: plugin.form.attr('action'),
                 method: plugin.form.attr('method'),
                 data: plugin.form.serialize(),
                 dataType: 'json',
                 success: function(r,status,x){
-                    location.reload();
-                    // console.log(r);
+                    // location.reload();
+                    console.log(r);
                 },
                 error: function(r,status,z){
                     //todo

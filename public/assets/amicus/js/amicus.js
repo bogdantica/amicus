@@ -4,7 +4,8 @@
 
 function formErrors($form, errors) {
 
-
+    $form.find('.has-error').removeClass('has-error');
+    $form.find('.ajaxError').remove();
 
     for (var errorKey in errors) {
         var array = errorKey.split('.');
@@ -40,11 +41,10 @@ function formErrors($form, errors) {
             var firstParent = $input.parent();
             if(firstParent.prop('nodeName') == "LABEL"){
                 firstParent.parent().addClass('has-error');
-                $('<p class="help-block m-b-0">' + inputError + '</p>').insertAfter(firstParent);
-
+                $('<p class="help-block m-b-0 ajaxError">' + inputError + '</p>').insertAfter(firstParent);
             }else{
                 firstParent.addClass('has-error');
-                firstParent.append('<p class="help-block m-b-0">' + inputError + '</p>');
+                firstParent.append('<p class="help-block m-b-0 ajaxError">' + inputError + '</p>');
             }
         }
     }

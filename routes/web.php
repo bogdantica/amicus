@@ -47,9 +47,25 @@ Route::group([
         ]
     ]);
 
-    Route::post('/events/create', [
-        'as' => 'event.create',
-//        'uses' => 'EventsController@show',
+    Route::post('/events/modal', [
+        'as' => 'event.modal',
+        'uses' => 'EventsController@modalEvent',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::put('/events/{event}/update',[
+        'as' => 'event.update',
+        'uses' => 'EventsController@update',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::put('/events/save',[
+        'as' => 'event.save',
+        'uses' => 'EventsController@save',
         'middleware' => [
             'permission:edit-events'
         ]
@@ -106,12 +122,32 @@ Route::group([
         ]
     ]);
 
+
+    Route::get('/attend/modal/{form}',[
+        'as' => 'attend.modal',
+        'uses' => 'AttendController@modal',
+        'middleware' => [
+            'permission:attend'
+        ]
+    ]);
+
     //todo controlelr
     Route::post('/resources/create', [
         'as' => 'resources.create',
 //        'uses' => 'SubsidiariesController@show',
         'middleware' => [
             'permission:edit-resources'
+        ]
+    ]);
+
+
+
+
+    Route::post('/events/form/{form}/modal',[
+        'as' => 'events.form.modal',
+        'uses' => 'FormController@modalForm',
+        'middleware' => [
+            'permission:edit-events'
         ]
     ]);
 
@@ -142,6 +178,14 @@ Route::group([
         ]
     ]);
 
+    Route::post('/events/form/option/modal',[
+        'as' => 'events.form.option.modal',
+        'uses' => 'FormController@modalOption',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
     Route::post('/events/form/option/{option}/value/create', [
         'as' => 'events.form.option.value.create',
         'uses' => 'FormController@createValue'
@@ -155,7 +199,15 @@ Route::group([
         ]
     ]);
 
-    Route::post('/events/{event}/form/{form}/attend',[
+    Route::post('/events/form/option/value/modal',[
+        'as' => 'events.form.option.value.modal',
+        'uses' => 'FormController@modalOptionValue',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::post('/events/form/{form}/attend',[
         'as' => 'events.form.attend',
         'uses' => 'AttendController@attend'
     ]);
