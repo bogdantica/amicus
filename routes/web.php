@@ -13,6 +13,11 @@ Route::group([
 
     //users routes
 
+
+    Route::get('/home',function(){
+        return redirect('/');
+    });
+
     Route::get('/profile', [
         'as' => 'users.my-profile',
         'uses' => 'UsersController@profile',
