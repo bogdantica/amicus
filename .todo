@@ -1,0 +1,9 @@
+//todo
+
+formularul de inregistrare sa fie de sine statator
+
+modificarea formularului de inscriere sa fie de sine statator, dar bazat de view-ul de mai sus.
+
+pentru modal, de implementat reload continut dupa ce s-a salvat formularul.
+
+//grija mare la timeline events !

@@ -19,25 +19,21 @@ use Illuminate\Http\Request;
 class FormController extends BaseController
 {
 
-    public function modalForm(Request $request)
+    public function modalForm(Event $event,Request $request)
     {
         $this->validate($request,[
             'id' => 'nullable|exists:registration_forms,id',
-            'id2' => 'nullable|exists:events,id'
         ]);
 
         if($request->id){
             $form = RegistrationForm::find($request->id);
-            $event = $form->event;
         }else{
             $form = new RegistrationForm();
-            $event = Event::find($request->id2);
         }
 
         return [
             'modal' => view('events.modals.registration_form.form.modal',compact('form','event'))->__toString()
         ];
-
     }
 
     public function save(RegistrationFormRequest $request, Event $event)
@@ -51,10 +47,16 @@ class FormController extends BaseController
 
     public function update(RegistrationFormRequest $request, RegistrationForm $form)
     {
-
         $data = FormHelper::updateForm($form,$request->all());
-
         return redirect()->back();
+    }
+
+    public function modalOptions(Event $event,RegistrationForm $form,Request $request)
+    {
+        $edit = true;
+        return [
+            'modal' => view('events.modals.registration_form.option.modal',compact('event','form','edit'))->__toString()
+        ];
     }
 
 

@@ -27,9 +27,6 @@
         };
 
         var submitHandler = function(){
-
-            console.log(plugin.form.attr('action'),plugin.form.serialize());
-
             $.ajax({
                 url: plugin.form.attr('action'),
                 method: plugin.form.attr('method'),

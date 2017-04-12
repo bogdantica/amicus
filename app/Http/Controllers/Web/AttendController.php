@@ -24,11 +24,11 @@ class AttendController extends BaseController
             }
         ]);
 
-
         return [
             'modal' => view('events.modals.attend.modal', compact('form'))->__toString()
         ];
     }
+
 
     public function show(Event $event)
     {

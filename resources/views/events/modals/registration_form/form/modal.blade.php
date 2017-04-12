@@ -22,8 +22,13 @@
                 @include('events.modals.registration_form.form.registration_form')
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Anuleaza</button>
-                <button type="submit" class="btn btn-success">Salveaza Formular</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Inchide</button>
+                @if(empty($form->id))
+                    <button type="submit" class="btn btn-success">Creaza Formular</button>
+                @else
+                    <button type="submit" class="btn btn-success">Modifica Formular</button>
+                    <button type="button" class="btn btn-warning modal-options">Optiuni Formular</button>
+                @endif
             </div>
             {!! Form::close() !!}
         </div>

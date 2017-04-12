@@ -12,7 +12,6 @@
             form: false,
             method: 'POST',
             hookModal: function ($modal) {
-
             }
         };
         var plugin = this;

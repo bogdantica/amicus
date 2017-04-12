@@ -136,6 +136,8 @@ Route::group([
         ]
     ]);
 
+
+
     //todo controlelr
     Route::post('/resources/create', [
         'as' => 'resources.create',
@@ -145,12 +147,17 @@ Route::group([
         ]
     ]);
 
-
-
-
-    Route::post('/events/form/{form}/modal',[
+    Route::post('/events/{event}/form/modal',[
         'as' => 'events.form.modal',
         'uses' => 'FormController@modalForm',
+        'middleware' => [
+            'permission:edit-events'
+        ]
+    ]);
+
+    Route::post('/events/{event}/form/{form?}/options/modal',[
+        'as' => 'events.form.options.modal',
+        'uses' => 'FormController@modalOptions',
         'middleware' => [
             'permission:edit-events'
         ]
@@ -220,9 +227,8 @@ Route::group([
 
 });
 
-
 Route::get('/test', function () {
 
-    asdsa;
+    echo route('event.show',1);
 });
 
